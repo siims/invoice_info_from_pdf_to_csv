@@ -12,3 +12,6 @@ class ABHALDUS(parsers.BaseParser):
         rowsWithContent = filter(lambda x: x.strip() != "", rows)
         cleanedRows = map(lambda x: x.strip().lstrip(), rowsWithContent)
         toModel.title = cleanedRows[0]
+
+    def _parseCosts(self, rows):
+        pass

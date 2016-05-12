@@ -20,7 +20,7 @@ class InvoiceModel():
         self.title = ""
         self.year = ""
         self.month = ""
-        self.costs = {}
+        self.costs = []
 
 def resetTypes():
     InvoiceModel.TYPES = [InvoiceModel.TYPE_UNKNOWN]

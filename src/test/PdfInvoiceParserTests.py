@@ -4,7 +4,7 @@ Created on May 12, 2016
 '''
 import unittest
 
-from test.resources import TEST_PDF_DATE_CREATED, TEST_PDF_FILENAME, TEST_PDF_TITLE, TEST_PDF_TYPE
+from test.resources import TEST_PDF_DATE_CREATED, TEST_PDF_FILENAME, TEST_PDF_TITLE, TEST_PDF_TYPE, TEST_PDF_COSTS
 from test.resources import TEST_UNKNOWN_PDF_FILENAME, TEST_UNKNOWN_PDF_TYPE
 from test.resources import TEST_FILENAME_FOR_TEST_PARSER_NOT_IMPLEMENTED, \
                            TEST_RELATIVE_FILENAME_FOR_TEST_PARSER_NOT_IMPLEMENTED, \
@@ -63,6 +63,11 @@ class PdfInvoiceParserTests(unittest.TestCase):
         finally:
             pdfFile.close()
             self._deleteNewInvoiceParser(invoiceDetectionKeyword)
+
+    def testParsingCosts(self):
+        invoice = self._parsePdfInvoice(self.PDF_FILE)
+
+        self.assertSetEqual(TEST_PDF_COSTS, invoice.costs)
 
     def _parsePdfInvoice(self, fileDescriptor):
         pdfPages = getPdfPages(fileDescriptor=fileDescriptor)
