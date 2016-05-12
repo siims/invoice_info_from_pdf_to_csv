@@ -7,7 +7,7 @@ import unittest
 from test.resources import TEST_PDF_DATE_CREATED, TEST_PDF_FILENAME, TEST_PDF_TITLE, TEST_PDF_TYPE
 from test.resources import TEST_UNKNOWN_PDF_FILENAME, TEST_UNKNOWN_PDF_TYPE
 from application import openPdf, getPdfPages, models
-import application.PdfInvoiceParser as parser
+import application.parsers as parser
 
 class PdfInvoiceParserTests(unittest.TestCase):
 
