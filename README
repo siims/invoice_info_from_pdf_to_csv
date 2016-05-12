@@ -1,0 +1,3 @@
+Small python script for reading important info from pdf invoices.
+
+Each pdf type must have its own parser defined in application.parsers by the user.

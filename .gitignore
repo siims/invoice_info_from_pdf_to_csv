@@ -1,0 +1,6 @@
+
+# python
+*.pyc
+
+# ide
+.project
