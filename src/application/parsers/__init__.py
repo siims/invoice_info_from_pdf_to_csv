@@ -5,9 +5,16 @@ Created on May 11, 2016
 
 import application
 import application.models.InvoiceModel as models
-import glob
+import importlib
 
-class PdfInvoiceParser(object):
+class ParserNotImplemented(NotImplementedError):
+    pass
+
+class BaseParser(object):
+    def parse(self, text, toModel):
+        raise ParserNotImplemented()
+
+class PdfInvoiceParser():
 
     def __init__(self, pdfPage, pdfDoc):
         self._rawText = application.getPdfAsText(pdfPages=[pdfPage])
@@ -24,21 +31,17 @@ class PdfInvoiceParser(object):
 
         return model
 
-    def readInInvoiceTypes(self, path_to_parser_modules="./application/parsers/"):
+    def readInInvoiceTypes(self):
         models.resetTypes()
 
-        for file in glob.glob(path_to_parser_modules + "[a-z|A-Z|0-9]*.py"):
-            moduleName = file.strip(path_to_parser_modules).strip(".py")
-            models.InvoiceModel.TYPES.append(moduleName)
-
     def _parseModelByType(self, model):
-        if model.type == "ABHALDUS":
-            rows = self._rawText.split("\n")
-            rowsWithContent = filter(lambda x: x.strip() != "", rows)
-            cleanedRows = map(lambda x: x.strip().lstrip(), rowsWithContent)
-            model.title = cleanedRows[0]
-        else:
+        if model.type == models.InvoiceModel.TYPE_UNKNOWN:
             raise models.InvoiceModel.InvoiceUnknownException()
+
+        module = importlib.import_module("." + model.type, package="application.parsers")
+        pdfParserClass = getattr(module, model.type)
+        pdfParser = pdfParserClass()
+        pdfParser.parse(self._rawText, model)
 
     def _parseMetadata(self, model):
         model.type = self._detectType()
@@ -51,4 +54,3 @@ class PdfInvoiceParser(object):
             if pdfType.lower() in self._rawText or pdfType.upper() in self._rawText:
                 return pdfType
         return models.InvoiceModel.TYPE_UNKNOWN
-
