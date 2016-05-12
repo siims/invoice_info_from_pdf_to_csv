@@ -7,3 +7,6 @@ class ABHALDUS(object):
 
     def __init__(self, params):
         pass
+
+    def parse(self):
+        pass
