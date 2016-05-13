@@ -5,7 +5,7 @@ Created on May 12, 2016
 
 class CostModel():
 
-    def __init__(self, name, amount, units, unitCost, total):
+    def __init__(self, name, total, amount=0, units="", unitCost=0):
         self.name = name
         self.amount = amount
         self.units = units
@@ -20,7 +20,7 @@ class CostModel():
         return not self.__eq__(other)
 
     def __repr__(self):
-        return "%s,%f,%s,%f,%f" % (self.name, self.amount, self.units, self.unitCost, self.total)
+        return "%s,%.2f,%s,%.3f,%.2f" % (self.name, self.amount, self.units, self.unitCost, self.total)
 
     def __hash__(self):
         return hash(self.__repr__())
