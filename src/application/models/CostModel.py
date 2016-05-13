@@ -27,11 +27,5 @@ class CostModel():
         return (isinstance(other, self.__class__)
             and self.name == other.name)
 
-    def __ne__(self, other):
-        return not self.__eq__(other)
-
     def __repr__(self):
         return "%s,%.2f,%s,%.3f,%.2f" % (self.name, self.amount, self.units, self.unitCost, self.total)
-
-    def __hash__(self):
-        return hash(self.__repr__())
