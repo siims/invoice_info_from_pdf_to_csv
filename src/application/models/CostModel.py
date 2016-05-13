@@ -27,5 +27,9 @@ class CostModel():
         return (isinstance(other, self.__class__)
             and self.name == other.name)
 
+    @staticmethod
+    def getHeader():
+        return "Type,Amount,Units,Unit Cost,Total"
+
     def __repr__(self):
         return "%s,%.2f,%s,%.3f,%.2f" % (self.name, self.amount, self.units, self.unitCost, self.total)

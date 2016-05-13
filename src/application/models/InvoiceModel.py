@@ -7,6 +7,7 @@ Created on May 11, 2016
 '''
 
 import glob
+from application.models import CostModel
 
 class InvoiceModel():
 
@@ -27,6 +28,7 @@ class InvoiceModel():
 
     def __repr__(self):
         return "%s %d/%d" % (self.title, self.month, self.year) + "\n" + \
+            CostModel.CostModel.getHeader() + "\n" + \
             "\n".join(["%s" % cost for cost in self.costs])
 
 def resetTypes():

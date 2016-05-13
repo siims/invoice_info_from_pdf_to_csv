@@ -23,6 +23,7 @@ class ModelTests(unittest.TestCase):
 
     def testCostsPrinting(self):
         expectedPrint = """TestInvoice 2/2000
+Type,Amount,Units,Unit Cost,Total
 A,0.00,,0.000,21.00
 Öžäõü utf8,0.00,,0.000,22.00
 Öžäõü utf8,123.13,\öäõü,999.000,20.00
