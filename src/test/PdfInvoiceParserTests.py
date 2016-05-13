@@ -68,7 +68,7 @@ class PdfInvoiceParserTests(unittest.TestCase):
     def testParsingCosts(self):
         invoice = self._parsePdfInvoice(self.PDF_FILE)
 
-        self.assertSetEqual(TEST_PDF_COSTS, invoice.costs)
+        self.assertListEqual(TEST_PDF_COSTS, invoice.costs)
 
     def _parsePdfInvoice(self, fileDescriptor):
         pdfPages = getPdfPages(fileDescriptor=fileDescriptor)
@@ -83,18 +83,21 @@ class PdfInvoiceParserTests(unittest.TestCase):
         try:
             newInvoiceParser = open('./application/parsers/%s.py' % invoiceDetectionKeyword, "w+")
 
-            newInvoiceParser.write("""
-import application.parsers as parsers
-
-class %(invoiceDetectionKeyword)s(parsers.BaseParser):
-    pass
-""" % {"invoiceDetectionKeyword": invoiceDetectionKeyword})
+            newInvoiceParser.write(self._getParserModuleBaseCode(invoiceDetectionKeyword))
 
         finally:
             newInvoiceParser.close()
 
     def _deleteNewInvoiceParser(self, invoiceDetectionKeyword):
         os.remove('./application/parsers/%s.py' % invoiceDetectionKeyword)
+
+    def _getParserModuleBaseCode(self, invoiceDetectionKeyword):
+        return """
+import application.parsers as parsers
+
+class %(invoiceDetectionKeyword)s(parsers.BaseParser):
+    pass
+""" % {"invoiceDetectionKeyword": invoiceDetectionKeyword}
 
 if __name__ == "__main__":
     # import sys;sys.argv = ['', 'Test.testName']

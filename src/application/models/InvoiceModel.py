@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 '''
 Created on May 11, 2016
 
@@ -20,7 +23,11 @@ class InvoiceModel():
         self.title = ""
         self.year = ""
         self.month = ""
-        self.costs = set([])
+        self.costs = []
+
+    def __repr__(self):
+        return "%s %d/%d" % (self.title, self.month, self.year) + "\n" + \
+            "\n".join(["%s" % cost for cost in self.costs])
 
 def resetTypes():
     InvoiceModel.TYPES = [InvoiceModel.TYPE_UNKNOWN]

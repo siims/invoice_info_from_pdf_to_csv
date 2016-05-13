@@ -11,20 +11,19 @@ TEST_PDF_DATE_CREATED = datetime.datetime.strptime(TEST_PDF_DATE_CREATED_STRING,
 TEST_PDF_TITLE = "A R V E  Nr. 4.16/R12-12"
 TEST_PDF_TYPE = "ABHALDUS"
 TEST_PDF_NUM_PAGES = 1
-TEST_PDF_COSTS = set([models.CostModel("Soojusenergia", 81.70, 0, "/MWh", 59.42),
-                    models.CostModel("Majandamiskulud", 54.99, 0, "", 0),
-                    models.CostModel("-vee soojendus", 21.04, 3, "m3", 7.013),
-                    models.CostModel("Prügivedu", 3.65, 60.90, "m2", 0.06),
-                    models.CostModel("-küte", 60.66, 60.90, "m2", 0.996),
-                    models.CostModel("Avariivalve", 1.95, 60.90, "m2", 0.032),
-                    models.CostModel("Vesi, kan.", 12.48, 6, "m3", 2.08),
-                    models.CostModel("Haldus", 8.89, 60.90, "m2", 0.146),
-                    models.CostModel("Üldelekter", 1.74, 14.28, "/kWh", 0.122),
-                    models.CostModel("Hooldus", 14.01, 60.90, "m2", 0.23),
-                    models.CostModel("Üldtarbevesi", 0.91, 60.90, "m2", 0.015),
-                    models.CostModel("Koristus", 7, 60.90, "m2", 0.115),
-                    models.CostModel("Remondireserv", 19.49, 60.90, "m2", 0.32)
-                    ])
+TEST_PDF_COSTS = [
+                  models.CostModel("-vee soojendus", 21.04, 3, "/m3", 7.013),
+                  models.CostModel("Prügivedu", 3.65, 60.90, "/m2", 0.06),
+                  models.CostModel("-küte", 60.66, 60.90, "/m2", 0.996),
+                  models.CostModel("Avariivalve", 1.95, 60.90, "/m2", 0.032),
+                  models.CostModel("Vesi, kan.", 12.48, 6, "/m3", 2.08),
+                  models.CostModel("Haldus", 8.89, 60.90, "/m2", 0.146),
+                  models.CostModel("Üldelekter", 1.74, 14.28, "/kWh", 0.122),
+                  models.CostModel("Hooldus", 14.01, 60.90, "/m2", 0.23),
+                  models.CostModel("Üldtarbevesi", 0.91, 60.90, "/m2", 0.015),
+                  models.CostModel("Koristus", 7, 60.90, "/m2", 0.115),
+                  models.CostModel("Remondireserv", 19.49, 60.90, "/m2", 0.32)
+                 ]
 
 # second pdf which is not an invoice
 TEST_UNKNOWN_PDF_FILENAME = "test/resources/unknown_test_invoice.pdf"
