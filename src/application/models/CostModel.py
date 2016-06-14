@@ -9,8 +9,15 @@ Created on May 12, 2016
 class CostModel():
 
     def __init__(self, name="", total=0., amount=0., units="", unitCost=0.):
+        self.name = ""
+        self.total = 0.0
+        self.amount = 0.0
+        self.units = ""
+        self.unitCost = 0.0
+
         if isinstance(name, list):
             inputLst = name
+
             if len(inputLst) > 0: self.name = inputLst[0]
             if len(inputLst) > 1: self.total = float(inputLst[1])
             if len(inputLst) > 2: self.amount = float(inputLst[2])

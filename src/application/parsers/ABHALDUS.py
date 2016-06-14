@@ -43,6 +43,8 @@ class ABHALDUS(parsers.BaseParser):
                     elements.pop(1)
 
                 elements.insert(1, elements.pop())
+                if len(elements) == 3:  # might be a case when amount and unitcost is missing
+                    elements.insert(2, 0.0)
                 newCost = models.CostModel(elements)
 
                 costs.append(newCost)
